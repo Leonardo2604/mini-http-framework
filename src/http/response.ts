@@ -7,6 +7,10 @@ export class HttpResponse {
 
   constructor(private readonly _response: ServerResponse) {}
 
+  get raw() {
+    return this._response;
+  }
+
   status(code: number) {
     this._statusCode = code;
 

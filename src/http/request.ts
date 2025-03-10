@@ -11,6 +11,7 @@ export class HttpRequest {
     private _query: Record<string, string | string[]>,
     private _params: Record<string, string>,
     private _body: unknown,
+    private _raw: IncomingMessage,
   ) {}
 
   get method(): string {
@@ -37,6 +38,10 @@ export class HttpRequest {
     return this._body;
   }
 
+  get raw(): IncomingMessage {
+    return this._raw;
+  }
+
   static async create(request: IncomingMessage, route: Route): Promise<HttpRequest> {
     const body = await HttpRequest.getBody(request);
     const url = HttpRequest.getUrl(request);
@@ -48,6 +53,7 @@ export class HttpRequest {
       HttpRequest.getQueryParams(request),
       route.getParams(url),
       body,
+      request,
     );
   }
 

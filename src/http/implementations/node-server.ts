@@ -38,8 +38,20 @@ export class NodeHttpServer extends HttpServer {
 
     const request = await HttpRequest.create(nodeRequest, route);
 
+    const middlewares = [...this.middlewares, route.handler];
+
     try {
-      await route.handler(request, response);
+      let index = 0;
+
+      const next = async () => {
+        if (index < middlewares.length) {
+          const middleware = middlewares[index++];
+
+          await middleware(request, response, next);
+        }
+      };
+
+      await next();
     } catch {
       response.status(500).json({ error: 'Internal Server Error' });
     }
