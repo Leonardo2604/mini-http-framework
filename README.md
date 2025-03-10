@@ -14,7 +14,7 @@ Um microframework HTTP criado com Node.js para entender como funciona a base de 
 Clone o repositório e instale as dependências:
 
 ```bash
-git clone https://github.com/seu-usuario/mini-http-framework.git
+git clone https://github.com/Leonardo2604/mini-http-framework.git
 cd mini-http-framework
 npm install
 ```
