@@ -23,6 +23,16 @@ router.get('/users', async (req, res) => {
     .send();
 });
 
+router.get('/users/:userId', async (req, res) => {
+  res
+    .status(200)
+    .json({
+      id: 1,
+      name: 'John Doe',
+    })
+    .send();
+});
+
 const server: HttpServer = new NodeHttpServer({
   port: SERVER_PORT,
   host: 'localhost',

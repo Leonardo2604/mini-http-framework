@@ -1,6 +1,7 @@
 import { IncomingMessage } from 'node:http';
 import { HttpMethod } from './method';
 import { isHttpMethod } from './helpers/method';
+import { Route } from './route';
 
 export class HttpRequest {
   private constructor(
@@ -36,15 +37,16 @@ export class HttpRequest {
     return this._body;
   }
 
-  static async create(request: IncomingMessage): Promise<HttpRequest> {
+  static async create(request: IncomingMessage, route: Route): Promise<HttpRequest> {
     const body = await HttpRequest.getBody(request);
+    const url = HttpRequest.getUrl(request);
 
     return new HttpRequest(
       HttpRequest.getMethod(request),
-      HttpRequest.getUrl(request),
+      url,
       request.headers,
       HttpRequest.getQueryParams(request),
-      {},
+      route.getParams(url),
       body,
     );
   }

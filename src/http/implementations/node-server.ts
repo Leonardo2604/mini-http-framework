@@ -36,7 +36,7 @@ export class NodeHttpServer extends HttpServer {
       return;
     }
 
-    const request = await HttpRequest.create(nodeRequest);
+    const request = await HttpRequest.create(nodeRequest, route);
 
     try {
       await route.handler(request, response);
