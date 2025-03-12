@@ -1,7 +1,7 @@
 import { createServer, IncomingMessage, Server, ServerResponse } from 'http';
-import { HttpServer, HttpServerOptions } from '../server';
-import { HttpRequest } from '../request';
-import { HttpResponse } from '../response';
+import { HttpServer, HttpServerOptions } from '@/lib/http/server';
+import { HttpRequest } from '@/lib/http/request';
+import { HttpResponse } from '@/lib/http/response';
 
 export class NodeHttpServer extends HttpServer {
   private readonly _server: Server;

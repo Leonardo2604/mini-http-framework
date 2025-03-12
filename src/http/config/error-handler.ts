@@ -1,7 +1,7 @@
 import { ErrorHandlerFunction } from '@/lib/http/error-handler-function';
 import { AppError } from '@/modules/shared/errors/app.error';
 import { BusinessError } from '@/modules/shared/errors/business.error';
-import { inProduction } from './app';
+import { inProduction } from '@/config/app';
 
 export const errorHandler: ErrorHandlerFunction = async (_, response, error) => {
   if (!inProduction) {

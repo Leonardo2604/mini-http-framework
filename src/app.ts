@@ -1,4 +1,4 @@
-import { server } from '@/server';
+import { server } from '@/http';
 
 (async () => {
   await server.start();
