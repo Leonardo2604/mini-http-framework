@@ -1,7 +1,9 @@
+import uuid from 'uuid';
+
 import { Gender } from '../enums/gender';
 
 export type UserProps = {
-  id?: number;
+  id: string;
   name: string;
   email: string;
   password: string;
@@ -21,7 +23,7 @@ type NewInstance = {
 };
 
 export class User {
-  private _id?: number;
+  private _id: string;
   private _name: string;
   private _email: string;
   private _password: string;
@@ -44,7 +46,13 @@ export class User {
   }
 
   static create(user: NewInstance) {
-    return new User({ ...user, createdAt: new Date(), updatedAt: new Date(), deletedAt: null });
+    return new User({
+      ...user,
+      id: uuid.v7(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: null,
+    });
   }
 
   static restore(user: UserProps) {

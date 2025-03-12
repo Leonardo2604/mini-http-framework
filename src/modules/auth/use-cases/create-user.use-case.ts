@@ -34,8 +34,8 @@ export class CreateUserUseCase {
 
     const user = User.create({ name, email, password: hashedPassword, birthday, gender });
 
-    const created = await this.userRepository.create(user);
+    await this.userRepository.create(user);
 
-    return { user: created };
+    return { user };
   }
 }
