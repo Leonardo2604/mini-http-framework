@@ -1,8 +1,9 @@
-import { UserRepository } from '../repositories/user/user.repository';
-import { DrizzleUserRepository } from '../repositories/user/drizzle-user.repository';
+import { PASSWORD_SALT } from '@/config/env';
+
+import { UserRepository } from '../repositories/user.repository';
+import { DrizzleUserRepository } from '../database/drizzle/repositories/drizzle-user.repository';
 import { PasswordService } from '../services/password/password.service';
 import { BcryptPasswordService } from '../services/password/bcrypt-password.service';
-import { PASSWORD_SALT } from '@/config/env';
 import { CreateUserUseCase } from '../use-cases/create-user.use-case';
 import { CreateUserController } from '../controllers/create-user.controller';
 

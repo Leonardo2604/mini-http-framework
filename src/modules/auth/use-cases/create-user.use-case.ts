@@ -1,7 +1,7 @@
 import { BusinessCodeError } from '@/modules/shared/enums/business-code-error';
 import { User } from '../entities/user';
 import { Gender } from '../enums/gender';
-import { UserRepository } from '../repositories/user/user.repository';
+import { UserRepository } from '../repositories/user.repository';
 import { BusinessError } from '@/modules/shared/errors/business.error';
 import { PasswordService } from '../services/password/password.service';
 

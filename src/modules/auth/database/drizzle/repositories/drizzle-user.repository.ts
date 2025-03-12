@@ -1,5 +1,5 @@
-import { User } from '../../entities/user';
-import { UserRepository } from './user.repository';
+import { User } from '../../../entities/user';
+import { UserRepository } from '../../../repositories/user.repository';
 
 export class DrizzleUserRepository implements UserRepository {
   async create(user: User): Promise<User> {
