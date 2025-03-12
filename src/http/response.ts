@@ -17,7 +17,7 @@ export class HttpResponse {
     return this;
   }
 
-  header(key: string, value: string) {
+  setHeader(key: string, value: string) {
     this._headers[key] = value;
 
     return this;

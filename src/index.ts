@@ -1,6 +1,7 @@
 import { SERVER_PORT } from './config/env';
 import { HttpServer, NodeHttpServer } from './http';
-import { loggerMiddleware } from './middlewares/logger.middleware';
+import { cors } from './middlewares/cors.middleware';
+import { securityHeaders } from './middlewares/security-headers.middleware';
 
 import { router } from './routers';
 
@@ -10,7 +11,8 @@ const server: HttpServer = new NodeHttpServer({
   router,
 });
 
-server.use(loggerMiddleware);
+server.use(securityHeaders);
+server.use(cors());
 
 (async () => {
   await server.start();
