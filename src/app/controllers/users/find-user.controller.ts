@@ -1,4 +1,4 @@
-import { HttpHandler } from '../../http';
+import { HttpHandler } from '../../../lib/http';
 
 export class FindUserController {
   handle: HttpHandler = async (request, response) => {

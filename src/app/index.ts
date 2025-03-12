@@ -1,5 +1,5 @@
 import { SERVER_PORT } from './config/env';
-import { HttpServer, NodeHttpServer } from './http';
+import { HttpServer, NodeHttpServer } from '../lib/http';
 import { cors } from './middlewares/cors.middleware';
 import { securityHeaders } from './middlewares/security-headers.middleware';
 

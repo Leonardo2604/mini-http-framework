@@ -1,6 +1,6 @@
 import { FindUserController } from '../controllers/users/find-user.controller';
 import { GetUsersController } from '../controllers/users/get-users.controller';
-import { Router } from '../http';
+import { Router } from '../../lib/http';
 
 export const register = (router: Router) => {
   const getUsersController = new GetUsersController();

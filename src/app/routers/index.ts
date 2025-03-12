@@ -1,4 +1,4 @@
-import { Router } from '../http';
+import { Router } from '../../lib/http';
 
 import * as Info from './info.router';
 import * as User from './user.router';
