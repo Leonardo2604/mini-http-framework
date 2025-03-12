@@ -53,7 +53,7 @@ export class NodeHttpServer extends HttpServer {
 
       await next();
     } catch {
-      response.status(500).json({ error: 'Internal Server Error' });
+      response.status(500).json({ error: 'Internal Server Error' }).send();
     }
   }
 }

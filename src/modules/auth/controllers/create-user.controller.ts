@@ -13,8 +13,6 @@ export class CreateUserController {
   constructor(private readonly createUserUseCase: CreateUserUseCase) {}
 
   handle: HttpHandler = async (req, res) => {
-    console.log('CreateUserController');
-
     const { name, email, password, gender, birthday } = req.body as Body;
 
     const { user } = await this.createUserUseCase.execute({
@@ -25,7 +23,6 @@ export class CreateUserController {
       birthday: new Date(birthday),
     });
 
-    console.log(user);
     res.json(user).send();
   };
 }
