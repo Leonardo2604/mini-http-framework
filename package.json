@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch --env-file=.env src/app/index.ts"
+    "dev": "tsx watch --env-file=.env src/app.ts"
   },
   "keywords": [],
   "author": "",
@@ -11,15 +11,18 @@
   "description": "",
   "dependencies": {
     "@types/node": "^22.13.9",
+    "bcrypt": "^5.1.1",
     "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@types/bcrypt": "^5.0.2",
     "eslint": "^9.22.0",
     "eslint-config-prettier": "^10.1.1",
     "globals": "^16.0.0",
     "prettier": "3.5.3",
     "typescript-eslint": "^8.26.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

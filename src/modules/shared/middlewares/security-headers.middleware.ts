@@ -1,4 +1,4 @@
-import { Middleware } from '../../lib/http/middleware';
+import { Middleware } from '@/lib/http/middleware';
 
 export const securityHeaders: Middleware = async (req, res, next) => {
   res.setHeader('Content-Security-Policy', "default-src 'self'"); // Restringe carregamento de conteúdo externo

@@ -1,4 +1,4 @@
-import { Middleware } from '../../lib/http/middleware';
+import { Middleware } from '@/lib/http/middleware';
 
 export type CorsOptions = {
   origin?: string;

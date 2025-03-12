@@ -1,5 +1,5 @@
-import { InfoController } from '../controllers/app/info.controller';
-import { Router } from '../../lib/http';
+import { Router } from '@/lib/http';
+import { InfoController } from './controllers/info.controller';
 
 export const register = (router: Router) => {
   const infoController = new InfoController();

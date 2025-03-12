@@ -1,4 +1,4 @@
-import { HttpHandler } from '../../../lib/http';
+import { HttpHandler } from '@/lib/http';
 
 export class InfoController {
   handle: HttpHandler = async (request, response) => {
