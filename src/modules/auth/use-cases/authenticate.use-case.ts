@@ -7,6 +7,7 @@ export type Params = {
 
 export type Result = {
   token: string;
+  refreshToken: string;
   expiresAt: Date;
 };
 

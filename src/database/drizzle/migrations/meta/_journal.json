@@ -15,6 +15,13 @@
       "when": 1741871378643,
       "tag": "0001_black_jigsaw",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1741886577204,
+      "tag": "0002_ambiguous_forge",
+      "breakpoints": true
     }
   ]
 }

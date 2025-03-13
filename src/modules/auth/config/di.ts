@@ -20,10 +20,15 @@ import { LogoutUseCase } from '../use-cases/logout.use-case';
 import { V1LogoutUseCase } from '../use-cases/v1/v1-logout.use-case';
 import { LogoutController } from '../controllers/logout.controller';
 import { AuthenticateMiddleware } from '../middlewares/authenticate.middleare';
+import { RefreshTokenRepository } from '../repositories/refresh-token.repository';
+import { DrizzleRefreshTokenRepository } from '../database/drizzle/repositories/drizzle-refresh-token.repository';
+import { CreateRefreshTokenUseCase } from '../use-cases/create-refresh-token.use-case';
+import { V1CreateRefreshTokenUseCase } from '../use-cases/v1/v1-create-refresh-token.use-case';
 
 // repositories
 export const userRepository: UserRepository = new DrizzleUserRepository();
 export const tokenRepository: TokenRepository = new DrizzleTokenRepository();
+export const refreshTokenRepository: RefreshTokenRepository = new DrizzleRefreshTokenRepository();
 
 // services
 export const hashService: HashService = new BcryptHashService({ saltRounds: HASH_SALT });
@@ -32,10 +37,15 @@ export const jwtService: JWTService = new JsonwebtokenJWTService({ secret: JWT_S
 // use cases
 export const createUserUseCase: CreateUserUseCase = new V1CreateUserUseCase(userRepository, hashService);
 export const createTokenUseCase: CreateTokenUseCase = new V1CreateTokenUseCase(jwtService, tokenRepository);
+export const createRefreshTokenUseCase: CreateRefreshTokenUseCase = new V1CreateRefreshTokenUseCase(
+  refreshTokenRepository,
+  hashService,
+);
 export const authenticateUseCase: AuthenticateUseCase = new V1AuthenticateUseCase(
   userRepository,
   hashService,
   createTokenUseCase,
+  createRefreshTokenUseCase,
 );
 export const logoutUseCase: LogoutUseCase = new V1LogoutUseCase(tokenRepository);
 

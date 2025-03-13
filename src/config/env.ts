@@ -12,4 +12,5 @@ export const DATABASE_NAME = String(process.env.DATABASE_NAME);
 export const HASH_SALT = Number(process.env.HASH_SALT) || 10;
 
 export const JWT_SECRET = String(process.env.JWT_SECRET);
-export const JWT_EXPIRES_IN_SECONDS = Number(process.env.JWT_EXPIRES_IN_SECONDS) || 600;
+export const TOKEN_EXPIRES_IN_SECONDS = Number(process.env.TOKEN_EXPIRES_IN_SECONDS) || 600;
+export const REFRESH_TOKEN_EXPIRES_IN_DAYS = Number(process.env.REFRESH_TOKEN_EXPIRES_IN_DAYS) || 30;
