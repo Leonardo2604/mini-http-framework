@@ -21,4 +21,8 @@ export class DrizzleTokenRepository implements TokenRepository {
 
     return TokenMapper.toEntity(token);
   }
+
+  async revoke(token: Token): Promise<void> {
+    await db.update(tokens).set({ revokedAt: token.revokedAt }).where(eq(tokens.id, token.id));
+  }
 }

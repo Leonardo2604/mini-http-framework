@@ -16,6 +16,10 @@ import { V1CreateTokenUseCase } from '../use-cases/v1/v1-create-token.use-case';
 import { CreateTokenUseCase } from '../use-cases/create-token.use-case';
 import { TokenRepository } from '../repositories/token.repository';
 import { DrizzleTokenRepository } from '../database/drizzle/repositories/drizzle-token.repository';
+import { LogoutUseCase } from '../use-cases/logout.use-case';
+import { V1LogoutUseCase } from '../use-cases/v1/v1-logout.use-case';
+import { LogoutController } from '../controllers/logout.controller';
+import { AuthenticateMiddleware } from '../middlewares/authenticate.middleare';
 
 // repositories
 export const userRepository: UserRepository = new DrizzleUserRepository();
@@ -33,7 +37,12 @@ export const authenticateUseCase: AuthenticateUseCase = new V1AuthenticateUseCas
   passwordService,
   createTokenUseCase,
 );
+export const logoutUseCase: LogoutUseCase = new V1LogoutUseCase(tokenRepository);
 
 // controllers
 export const createUserController = new CreateUserController(createUserUseCase);
 export const authenticateController = new AuthenticateController(authenticateUseCase);
+export const logoutController = new LogoutController(logoutUseCase);
+
+// middlewares
+export const authenticateMiddleware = new AuthenticateMiddleware(jwtService, tokenRepository);

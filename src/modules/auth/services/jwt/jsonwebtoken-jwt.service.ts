@@ -19,4 +19,8 @@ export class JsonwebtokenJWTService implements JWTService {
   verify(token: string): Record<string, unknown> {
     return jwt.verify(token, this._secret) as Record<string, unknown>;
   }
+
+  decode(token: string): Record<string, unknown> {
+    return jwt.decode(token) as Record<string, unknown>;
+  }
 }

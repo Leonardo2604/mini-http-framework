@@ -61,6 +61,14 @@ export class Token {
     return this._createdAt;
   }
 
+  revoke() {
+    this._revokedAt = new Date();
+  }
+
+  isRevoked() {
+    return !!this._revokedAt;
+  }
+
   toJSON() {
     return {
       id: this._id,

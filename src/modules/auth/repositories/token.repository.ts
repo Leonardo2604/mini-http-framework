@@ -4,4 +4,6 @@ export interface TokenRepository {
   create(token: Token): Promise<void>;
 
   findById(tokenId: string): Promise<Token | null>;
+
+  revoke(token: Token): Promise<void>;
 }
