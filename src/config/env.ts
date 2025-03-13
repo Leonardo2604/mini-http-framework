@@ -9,7 +9,7 @@ export const DATABASE_PASS = String(process.env.DATABASE_PASS);
 export const DATABASE_PORT = Number(process.env.DATABASE_PORT) || 5432;
 export const DATABASE_NAME = String(process.env.DATABASE_NAME);
 
-export const PASSWORD_SALT = Number(process.env.PASSWORD_SALT) || 10;
+export const HASH_SALT = Number(process.env.HASH_SALT) || 10;
 
 export const JWT_SECRET = String(process.env.JWT_SECRET);
 export const JWT_EXPIRES_IN_SECONDS = Number(process.env.JWT_EXPIRES_IN_SECONDS) || 600;

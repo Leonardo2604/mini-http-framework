@@ -2,13 +2,13 @@ import { BusinessCodeError } from '@/modules/shared/enums/business-code-error';
 import { User } from '../../entities/user';
 import { UserRepository } from '../../repositories/user.repository';
 import { BusinessError } from '@/modules/shared/errors/business.error';
-import { PasswordService } from '../../services/password/password.service';
+import { HashService } from '../../../shared/services/password/hash.service';
 import { CreateUserUseCase, Params, Result } from '../create-user.use-case';
 
 export class V1CreateUserUseCase implements CreateUserUseCase {
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly passwordService: PasswordService,
+    private readonly passwordService: HashService,
   ) {}
 
   async execute({ name, email, password, birthday, gender }: Params): Promise<Result> {

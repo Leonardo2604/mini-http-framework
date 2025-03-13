@@ -1,9 +1,9 @@
-import { JWT_SECRET, PASSWORD_SALT } from '@/config/env';
+import { HASH_SALT, JWT_SECRET } from '@/config/env';
 
 import { UserRepository } from '../repositories/user.repository';
 import { DrizzleUserRepository } from '../database/drizzle/repositories/drizzle-user.repository';
-import { PasswordService } from '../services/password/password.service';
-import { BcryptPasswordService } from '../services/password/bcrypt-password.service';
+import { HashService } from '../../shared/services/password/hash.service';
+import { BcryptHashService } from '../../shared/services/password/bcrypt-hash.service';
 import { V1CreateUserUseCase } from '../use-cases/v1/v1-create-user.use-case';
 import { CreateUserController } from '../controllers/create-user.controller';
 import { JWTService } from '../services/jwt/jwt.service';
@@ -26,15 +26,15 @@ export const userRepository: UserRepository = new DrizzleUserRepository();
 export const tokenRepository: TokenRepository = new DrizzleTokenRepository();
 
 // services
-export const passwordService: PasswordService = new BcryptPasswordService({ saltRounds: PASSWORD_SALT });
+export const hashService: HashService = new BcryptHashService({ saltRounds: HASH_SALT });
 export const jwtService: JWTService = new JsonwebtokenJWTService({ secret: JWT_SECRET });
 
 // use cases
-export const createUserUseCase: CreateUserUseCase = new V1CreateUserUseCase(userRepository, passwordService);
+export const createUserUseCase: CreateUserUseCase = new V1CreateUserUseCase(userRepository, hashService);
 export const createTokenUseCase: CreateTokenUseCase = new V1CreateTokenUseCase(jwtService, tokenRepository);
 export const authenticateUseCase: AuthenticateUseCase = new V1AuthenticateUseCase(
   userRepository,
-  passwordService,
+  hashService,
   createTokenUseCase,
 );
 export const logoutUseCase: LogoutUseCase = new V1LogoutUseCase(tokenRepository);

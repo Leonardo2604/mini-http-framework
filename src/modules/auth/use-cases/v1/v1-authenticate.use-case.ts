@@ -1,7 +1,7 @@
 import { BusinessError } from '@/modules/shared/errors/business.error';
 import { UserRepository } from '../../repositories/user.repository';
 import { BusinessCodeError } from '@/modules/shared/enums/business-code-error';
-import { PasswordService } from '../../services/password/password.service';
+import { HashService } from '../../../shared/services/password/hash.service';
 import { JWT_EXPIRES_IN_SECONDS } from '@/config/env';
 import { AuthenticateUseCase, Params, Result } from '../authenticate.use-case';
 import { CreateTokenUseCase } from '../create-token.use-case';
@@ -9,7 +9,7 @@ import { CreateTokenUseCase } from '../create-token.use-case';
 export class V1AuthenticateUseCase implements AuthenticateUseCase {
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly passwordService: PasswordService,
+    private readonly hashService: HashService,
     private readonly createTokenUseCase: CreateTokenUseCase,
   ) {}
 
@@ -20,7 +20,7 @@ export class V1AuthenticateUseCase implements AuthenticateUseCase {
       throw new BusinessError(BusinessCodeError.INCORRECT_EMAIL_OR_PASSWORD);
     }
 
-    const isPasswordCorrect = await this.passwordService.compare(password, user.password);
+    const isPasswordCorrect = await this.hashService.compare(password, user.password);
 
     if (!isPasswordCorrect) {
       throw new BusinessError(BusinessCodeError.INCORRECT_EMAIL_OR_PASSWORD);
