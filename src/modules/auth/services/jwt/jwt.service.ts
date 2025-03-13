@@ -3,7 +3,7 @@ export type SignOptions = {
 };
 
 export interface JWTService {
-  sign(payload: Record<string, unknown>, options: SignOptions): string;
+  sign(payload: Record<string, unknown>, options?: SignOptions): string;
 
   verify(token: string): Record<string, unknown>;
 }

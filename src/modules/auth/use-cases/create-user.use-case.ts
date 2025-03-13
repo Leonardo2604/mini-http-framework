@@ -1,11 +1,8 @@
-import { BusinessCodeError } from '@/modules/shared/enums/business-code-error';
-import { User } from '../entities/user';
+import { UseCase } from '@/modules/shared/interfaces/use-case';
 import { Gender } from '../enums/gender';
-import { UserRepository } from '../repositories/user.repository';
-import { BusinessError } from '@/modules/shared/errors/business.error';
-import { PasswordService } from '../services/password/password.service';
+import { User } from '../entities/user';
 
-type Params = {
+export type Params = {
   name: string;
   email: string;
   password: string;
@@ -13,29 +10,8 @@ type Params = {
   gender: Gender;
 };
 
-type Result = {
+export type Result = {
   user: User;
 };
 
-export class CreateUserUseCase {
-  constructor(
-    private readonly userRepository: UserRepository,
-    private readonly passwordService: PasswordService,
-  ) {}
-
-  async execute({ name, email, password, birthday, gender }: Params): Promise<Result> {
-    const exists = await this.userRepository.findByEmail(email);
-
-    if (exists) {
-      throw new BusinessError(BusinessCodeError.USER_ALREADY_EXISTS);
-    }
-
-    const hashedPassword = await this.passwordService.hash(password);
-
-    const user = User.create({ name, email, password: hashedPassword, birthday, gender });
-
-    await this.userRepository.create(user);
-
-    return { user };
-  }
-}
+export interface CreateUserUseCase extends UseCase<Params, Result> {}

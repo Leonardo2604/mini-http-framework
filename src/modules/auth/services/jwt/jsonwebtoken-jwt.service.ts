@@ -12,8 +12,8 @@ export class JsonwebtokenJWTService implements JWTService {
     this._secret = options.secret;
   }
 
-  sign(payload: Record<string, unknown>, options: SignOptions): string {
-    return jwt.sign(payload, this._secret, { expiresIn: options.expiresIn });
+  sign(payload: Record<string, unknown>, options?: SignOptions): string {
+    return jwt.sign(payload, this._secret, options);
   }
 
   verify(token: string): Record<string, unknown> {

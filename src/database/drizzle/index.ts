@@ -2,7 +2,7 @@ import { DATABASE_HOST, DATABASE_NAME, DATABASE_PASS, DATABASE_PORT, DATABASE_US
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 
-import { users } from '@/modules/auth/database/drizzle/schemas/users';
+import * as authSchemas from '@/modules/auth/database/drizzle/schemas';
 
 const pool = new Pool({
   host: DATABASE_HOST,
@@ -13,4 +13,4 @@ const pool = new Pool({
   ssl: false,
 });
 
-export const db = drizzle({ client: pool, schema: { users } });
+export const db = drizzle({ client: pool, schema: { ...authSchemas } });

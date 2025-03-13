@@ -1,5 +1,4 @@
-import { User as UserDTO } from '../dtos/user.dto';
-import { CreateUser } from '../dtos/create-user.dto';
+import { User as UserDTO, NewUser } from '../dtos/user.dto';
 import { User } from '@/modules/auth/entities/user';
 
 export class UserMapper {
@@ -17,7 +16,7 @@ export class UserMapper {
     });
   }
 
-  static toPersistence(user: User): CreateUser {
+  static toPersistence(user: User): NewUser {
     return {
       id: user.id,
       name: user.name,

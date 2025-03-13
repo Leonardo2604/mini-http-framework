@@ -1,13 +1,12 @@
 import { UseCase } from '@/modules/shared/interfaces/use-case';
 
 export type Params = {
-  email: string;
-  password: string;
+  userId: string;
+  expiresAt: Date;
 };
 
 export type Result = {
   token: string;
-  expiresAt: Date;
 };
 
-export interface AuthenticateUseCase extends UseCase<Params, Result> {}
+export interface CreateTokenUseCase extends UseCase<Params, Result> {}
