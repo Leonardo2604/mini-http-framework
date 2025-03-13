@@ -38,7 +38,7 @@ export class NodeHttpServer extends HttpServer {
 
     const request = await HttpRequest.create(nodeRequest, route);
 
-    const middlewares = [...this.middlewares, route.handler];
+    const middlewares = [...this.middlewares, ...route.middlewares, route.handler];
 
     try {
       let index = 0;

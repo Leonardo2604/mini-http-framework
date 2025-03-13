@@ -4,6 +4,8 @@ import { isHttpMethod } from './helpers/method';
 import { Route } from './route';
 
 export class HttpRequest {
+  public extra: Record<string, unknown> = {};
+
   private constructor(
     private _method: HttpMethod,
     private _url: string,
@@ -102,21 +104,5 @@ export class HttpRequest {
     }
 
     return queryParams;
-  }
-
-  private static getParams(route: string, url: string): Record<string, string> {
-    const params: Record<string, string> = {};
-    const routeParts = route.split('/');
-    const urlParts = url.split('?')[0].split('/');
-
-    if (routeParts.length !== urlParts.length) return params;
-
-    routeParts.forEach((part, index) => {
-      if (part.startsWith(':')) {
-        params[part.slice(1)] = urlParts[index];
-      }
-    });
-
-    return params;
   }
 }
