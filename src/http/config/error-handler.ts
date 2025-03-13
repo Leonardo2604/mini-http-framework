@@ -13,6 +13,7 @@ export const errorHandler: ErrorHandlerFunction = async (_, response, error) => 
       response.status(400).json({ message: error.message }).send();
     }
 
+    response.status(500).json({ message: 'Internal Server Error' }).send();
     return;
   }
 
