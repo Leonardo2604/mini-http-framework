@@ -61,6 +61,10 @@ export class RefreshToken {
     return this._createdAt;
   }
 
+  isExpired() {
+    return this._expiresAt < new Date();
+  }
+
   toJSON() {
     return {
       id: this._id,

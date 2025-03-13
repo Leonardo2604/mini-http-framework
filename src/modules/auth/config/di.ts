@@ -24,6 +24,9 @@ import { RefreshTokenRepository } from '../repositories/refresh-token.repository
 import { DrizzleRefreshTokenRepository } from '../database/drizzle/repositories/drizzle-refresh-token.repository';
 import { CreateRefreshTokenUseCase } from '../use-cases/create-refresh-token.use-case';
 import { V1CreateRefreshTokenUseCase } from '../use-cases/v1/v1-create-refresh-token.use-case';
+import { RenewTokenUseCase } from '../use-cases/renew-token.use-case';
+import { V1RenewTokenUseCase } from '../use-cases/v1/v1-renew-token.use-case';
+import { RenewTokenController } from '../controllers/renew-token.controller';
 
 // repositories
 export const userRepository: UserRepository = new DrizzleUserRepository();
@@ -48,11 +51,18 @@ export const authenticateUseCase: AuthenticateUseCase = new V1AuthenticateUseCas
   createRefreshTokenUseCase,
 );
 export const logoutUseCase: LogoutUseCase = new V1LogoutUseCase(tokenRepository);
+export const renewTokenUseCase: RenewTokenUseCase = new V1RenewTokenUseCase(
+  refreshTokenRepository,
+  hashService,
+  createTokenUseCase,
+  createRefreshTokenUseCase,
+);
 
 // controllers
 export const createUserController = new CreateUserController(createUserUseCase);
 export const authenticateController = new AuthenticateController(authenticateUseCase);
 export const logoutController = new LogoutController(logoutUseCase);
+export const renewTokenController = new RenewTokenController(renewTokenUseCase);
 
 // middlewares
 export const authenticateMiddleware = new AuthenticateMiddleware(jwtService, tokenRepository);

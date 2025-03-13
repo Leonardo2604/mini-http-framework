@@ -11,7 +11,7 @@ export const errorHandler: ErrorHandlerFunction = async (_, response, error) => 
 
   if (error instanceof AppError) {
     if (error instanceof BusinessError) {
-      response.status(400).json({ message: error.message }).send();
+      response.status(400).json({ message: error.message, code: error.code }).send();
       return;
     }
 
