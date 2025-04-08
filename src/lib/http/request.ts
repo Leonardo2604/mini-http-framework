@@ -1,6 +1,6 @@
 import { IncomingMessage } from 'node:http';
 import { HttpMethod } from './method';
-import { isHttpMethod } from './helpers/method';
+import { isHttpMethod } from './helpers';
 import { Route } from './route';
 
 export class HttpRequest {
