@@ -1,6 +1,11 @@
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
   test: {
     globals: true, // usar describe, it, expect sem imports
     environment: 'node', // ideal para testes backend
