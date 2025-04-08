@@ -13,6 +13,10 @@ export class Router {
     this._routes.push(new Route('POST', route, handler, options));
   }
 
+  patch(route: string, handler: HttpHandler, options?: RouteOptions) {
+    this._routes.push(new Route('PATCH', route, handler, options));
+  }
+
   put(route: string, handler: HttpHandler, options?: RouteOptions) {
     this._routes.push(new Route('PUT', route, handler, options));
   }
