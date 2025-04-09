@@ -36,15 +36,15 @@ describe.sequential('NodeHttpServer', () => {
 
     await server.start();
 
-    const request = await fetch(`http://${server.host}:${server.port}/test`);
-    const data = await request.json();
+    const response = await fetch(`http://${server.host}:${server.port}/test`);
+    const data = await response.json();
 
     await server.stop();
 
     expect(data).toEqual({ message: 'Hello, world!' });
-    expect(request.status).toBe(200);
-    expect(request.statusText).toBe('OK');
-    expect(request.headers.get('content-type')).toBe('application/json');
+    expect(response.status).toBe(200);
+    expect(response.statusText).toBe('OK');
+    expect(response.headers.get('content-type')).toBe('application/json');
   });
 
   it('should return 404 when not found a route', async () => {
@@ -58,14 +58,14 @@ describe.sequential('NodeHttpServer', () => {
 
     await server.start();
 
-    const request = await fetch(`http://${server.host}:${server.port}/test`);
-    const data = await request.json();
+    const response = await fetch(`http://${server.host}:${server.port}/test`);
+    const data = await response.json();
 
     await server.stop();
 
     expect(data).toEqual({ message: 'Not Found' });
-    expect(request.status).toBe(404);
-    expect(request.headers.get('content-type')).toBe('application/json');
+    expect(response.status).toBe(404);
+    expect(response.headers.get('content-type')).toBe('application/json');
   });
 
   it('should return 500 when handler broken', async () => {
@@ -83,14 +83,14 @@ describe.sequential('NodeHttpServer', () => {
 
     await server.start();
 
-    const request = await fetch(`http://${server.host}:${server.port}/test`);
-    const data = await request.json();
+    const response = await fetch(`http://${server.host}:${server.port}/test`);
+    const data = await response.json();
 
     await server.stop();
 
     expect(data).toEqual({ message: 'Internal Server Error' });
-    expect(request.status).toBe(500);
-    expect(request.headers.get('content-type')).toBe('application/json');
+    expect(response.status).toBe(500);
+    expect(response.headers.get('content-type')).toBe('application/json');
   });
 
   it('should use custom error hendler when handler broken', async () => {
@@ -111,14 +111,14 @@ describe.sequential('NodeHttpServer', () => {
 
     await server.start();
 
-    const request = await fetch(`http://${server.host}:${server.port}/test`);
-    const data = await request.json();
+    const response = await fetch(`http://${server.host}:${server.port}/test`);
+    const data = await response.json();
 
     await server.stop();
 
     expect(data).toEqual({ message: 'Custom error message' });
-    expect(request.status).toBe(500);
-    expect(request.headers.get('content-type')).toBe('application/json');
+    expect(response.status).toBe(500);
+    expect(response.headers.get('content-type')).toBe('application/json');
   });
 
   it('should reject stop when server.close returns an error', async () => {
