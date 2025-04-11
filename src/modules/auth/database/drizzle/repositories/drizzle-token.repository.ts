@@ -1,4 +1,4 @@
-import { db } from '@/database/drizzle';
+import { db } from '@/infra/database/drizzle';
 import { Token } from '@/modules/auth/entities/token';
 import { TokenRepository } from '@/modules/auth/repositories/token.repository';
 import { tokens } from '../schemas';

@@ -1,4 +1,4 @@
-import { db } from '@/database/drizzle';
+import { db } from '@/infra/database/drizzle';
 
 import { User } from '../../../entities/user';
 import { UserRepository } from '../../../repositories/user.repository';

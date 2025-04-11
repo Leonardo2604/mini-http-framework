@@ -1,4 +1,4 @@
-import { db } from '@/database/drizzle';
+import { db } from '@/infra/database/drizzle';
 import { eq } from 'drizzle-orm';
 import { RefreshTokenRepository } from '@/modules/auth/repositories/refresh-token.repository';
 import { RefreshToken } from '@/modules/auth/entities/refresh-token';

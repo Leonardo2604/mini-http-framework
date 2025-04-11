@@ -1,4 +1,4 @@
-import { server } from '@/http';
+import { server } from '@/infra/http';
 
 (async () => {
   await server.start();
