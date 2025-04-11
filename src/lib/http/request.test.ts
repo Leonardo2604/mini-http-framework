@@ -76,6 +76,58 @@ describe('HttpRequest', () => {
     expect(request.body).toEqual('not a json string');
   });
 
+  it('should use GET as default method when no method is provided', async () => {
+    // Mock the IncomingMessage and Route
+    const mockRequest = {
+      url: '/api/test',
+      headers: { 'Content-Type': 'application/json' },
+    } as unknown as IncomingMessage;
+
+    const mockRoute = {
+      getParams: () => ({}),
+    } as unknown as Route;
+
+    const request = await HttpRequest.create(mockRequest, mockRoute);
+
+    expect(request.method).toBe('GET');
+  });
+
+  it('should use / as default URL when no URL is provided', async () => {
+    // Mock the IncomingMessage and Route
+    const mockRequest = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    } as unknown as IncomingMessage;
+
+    const mockRoute = {
+      getParams: () => ({}),
+    } as unknown as Route;
+
+    const request = await HttpRequest.create(mockRequest, mockRoute);
+
+    expect(request.url).toBe('/');
+  });
+
+  it('should handle query parameters without values', async () => {
+    // Mock the IncomingMessage and Route
+    const mockRequest = {
+      method: 'GET',
+      url: '/api/test?key1&key2=value2',
+      headers: { 'Content-Type': 'application/json' },
+    } as unknown as IncomingMessage;
+
+    const mockRoute = {
+      getParams: () => ({}),
+    } as unknown as Route;
+
+    const request = await HttpRequest.create(mockRequest, mockRoute);
+
+    expect(request.query).toEqual({
+      key1: '',
+      key2: 'value2'
+    });
+  });
+
   it('should throw an Error when invalid http method is provided', async () => {
     // Mock the IncomingMessage and Route
     const mockRequest = {

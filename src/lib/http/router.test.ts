@@ -29,4 +29,19 @@ describe('Router', () => {
     expect(router.match({ method: 'POST', url: '/api/test' } as IncomingMessage)).toBeNull();
     expect(router.match({ method: 'GET', url: '/api/test/test' } as IncomingMessage)).toBeNull();
   });
+
+  it('should use default values when url or method are not provided', () => {
+    const router = new Router();
+
+    router.get('/', async () => {});
+
+    // Teste quando url é undefined
+    expect(router.match({ method: 'GET' } as IncomingMessage)).not.toBeNull();
+
+    // Teste quando method é undefined
+    expect(router.match({ url: '/' } as IncomingMessage)).not.toBeNull();
+
+    // Teste quando ambos são undefined
+    expect(router.match({} as IncomingMessage)).not.toBeNull();
+  });
 });
