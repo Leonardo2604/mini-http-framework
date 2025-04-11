@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { NodeHttpServer } from './server';
 import { Router } from '@/lib/http';
 
-describe.sequential('NodeHttpServer', () => {
+describe('NodeHttpServer', () => {
   it('should be able to create a server', () => {
     const router = new Router();
     const fakeMiddleware = async () => {};
@@ -29,7 +29,6 @@ describe.sequential('NodeHttpServer', () => {
     });
 
     const server = new NodeHttpServer({
-      port: 3000,
       host: 'localhost',
       router,
     });
@@ -51,7 +50,6 @@ describe.sequential('NodeHttpServer', () => {
     const router = new Router();
 
     const server = new NodeHttpServer({
-      port: 3000,
       host: 'localhost',
       router,
     });
@@ -76,7 +74,6 @@ describe.sequential('NodeHttpServer', () => {
     });
 
     const server = new NodeHttpServer({
-      port: 3000,
       host: 'localhost',
       router,
     });
@@ -101,7 +98,6 @@ describe.sequential('NodeHttpServer', () => {
     });
 
     const server = new NodeHttpServer({
-      port: 3000,
       host: 'localhost',
       router,
       errorHandler: async (req, res) => {

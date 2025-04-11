@@ -12,7 +12,15 @@ export class NodeHttpServer extends HttpServer {
   }
 
   async start(): Promise<void> {
-    return new Promise((resolve) => this._server.listen(this.port, this.host, resolve));
+    return new Promise((resolve) => {
+      this._server.listen(this.port, this.host, () => {
+        const address = this._server.address();
+        if (address && typeof address === 'object') {
+          this.port = address.port;
+        }
+        resolve();
+      });
+    });
   }
 
   async stop(): Promise<void> {
