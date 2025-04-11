@@ -1,5 +1,5 @@
 import { HttpServer } from '@/lib/http';
-import { NodeHttpServer } from './node/node-server';
+import { NodeHttpServer } from './server';
 import { SERVER_HOST, SERVER_PORT } from '@/config/env';
 
 import { errorHandler } from './config/error-handler';

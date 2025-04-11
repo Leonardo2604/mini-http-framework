@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { NodeHttpServer } from './node-server';
+import { NodeHttpServer } from './server';
 import { Router } from '@/lib/http';
 
 describe.sequential('NodeHttpServer', () => {
