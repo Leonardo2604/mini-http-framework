@@ -2,6 +2,7 @@ import { IncomingMessage } from 'node:http';
 import { HttpMethod } from './method';
 import { isHttpMethod } from './helpers';
 import { Route } from './route';
+import { once } from 'node:events';
 
 export class HttpRequest {
   public extra: Record<string, unknown> = {};
@@ -78,10 +79,12 @@ export class HttpRequest {
       return;
     }
 
-    let body = '';
+    let body: string;
 
-    for await (const chunk of request) {
-      body += chunk;
+    try {
+      body = (await once(request, 'data')).toString();
+    } catch (err) {
+      return;
     }
 
     try {
